@@ -522,6 +522,20 @@ input:not([type="checkbox"]), textarea, select {
     background: #fafafa;
     cursor: pointer;
 }
+/* Updated Header Left to include a gap between the image and the title */
+.header-left {
+    flex: 1; 
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Adds space between the logo and the red title box */
+}
+
+/* New style to ensure the logo fits nicely inside the header */
+.header-logo {
+    max-height: 80px; /* Keeps the image from stretching the 80px header */
+    width: auto;      /* Maintains the image's aspect ratio */
+    object-fit: contain;
+}
     </style>
 </head>
 <body>
@@ -867,7 +881,7 @@ function generateReinspectionPreview() {
 }
 
 async function fetchLookupData() {
-    // Replace 'AssetRegistry' with your actual reference table name
+    // Replace 'LAS16AssetRegistry' with your actual reference table name
     const { data, error } = await _supabase.from('LAS16AssetRegistry').select('asset_name, location');
     
     if (error) {
@@ -1399,6 +1413,7 @@ async function fetchAndRender(container, assetName) {
     renderEntries(container, filteredData);
     container.setAttribute('data-loaded', 'true');
 }
+
 let isEditMode = false;
 
 async function deleteSelected() {
@@ -1804,4 +1819,3 @@ window.onload = initApp;
 </script>
 </body>
 </html>
-
